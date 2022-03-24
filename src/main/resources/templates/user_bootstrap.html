@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+
+    <link rel="icon" href="http://electronika.spb.ru/favicon.ico" type="image/x-icon">
+
+    <title>User page</title>
+
+    <!-- Bootstrap CSS -->
+    <link crossorigin="anonymous"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          rel="stylesheet">
+
+
+    <link href="/webjars/bootstrap/4.3.1/css/bootstrap.css" rel="stylesheet"/>
+    <script type="text/javascript" src="/webjars/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!--  <script type="text/javascript" src="../static/main.js" th:src="@{/main.js}"></script>-->
+
+
+</head>
+<body>
+
+
+<!--верхняя панель-->
+<nav class="navbar  navbar-dark bg-dark ">
+
+    <a class="navbar-brand" href="#">
+        <b> <span th:text="${user.username}"></span></b>
+        <span> with roles:</span>
+        <td th:each="role:${user.roles}" th:text="${role.role}"></td>
+    </a>
+    <ul class="nav navbar-nav navbar-right">
+        <li class="nav-item">
+            <a class="nav-link" href='/logout'>Logout</a>
+        </li>
+    </ul>
+</nav>
+<!--верхняя панель-->
+
+<div class="container-fluid" style="height: 100%">
+    <div class="row flex-fill d-flex justify-content-start">
+
+        <!--боковая белая панель-->
+        <nav class="col-2 bg-white"  style="height: 100vh">
+            <br>
+            <div class="fix_block">
+                <ul class="nav flex-column nav-pills">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin">Admin</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/user">User</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!--правая серая панель-->
+
+
+        <div class="container col-md-10 pt-4 bg-light ">
+            <br>
+            <h1 class="h2">User information-page</h1>
+
+            <div class="card bg-light ">
+                <br>
+                <ul class="px-3">
+                    <h5>About user</h5>
+                </ul>
+                <div class="table-responsive">
+
+                    <div class="card">
+                        <div class="card-body">
+
+                            <table class="table table-striped bg-white">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Username</th>
+                                    <th>Job</th>
+                                    <th>Age</th>
+                                    <th>Role</th>
+                                </tr>
+                                </thead>
+
+                                <tr th:each="user :${user}">
+                                    <td th:text="${user.id}"></td>
+                                    <td th:text="${user.username}"></td>
+                                    <td th:text="${user.job}"></td>
+                                    <td th:text="${user.age}"></td>
+                                    <td th:each="role : ${user.roles}" th:text="${role.role}"></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <canvas class="" height="900"></canvas>
+        </div>
+    </div>
+</div>
+</body>
+</html>
